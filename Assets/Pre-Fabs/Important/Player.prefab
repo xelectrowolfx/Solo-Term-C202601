@@ -55,9 +55,12 @@ MonoBehaviour:
   jumpSpeed: 12
   jumpMax: 2
   gravity: 35
+  ignorelayer:
+    serializedVersion: 2
+    m_Bits: 0
   DrawDebug: 1
   shootDamage: 2
-  shootDist: 20
+  shootDist: 150
   shootRate: 0.5
 --- !u!143 &120043031118959846
 CharacterController:

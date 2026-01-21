@@ -9,6 +9,7 @@ public class DoorController : MonoBehaviour
     [SerializeField] float Width;
     [SerializeField] int OpenTime;
     [SerializeField] LayerField Layer;
+    [SerializeField] bool Start_Open = false;
 
     Vector3 Closed;
     Vector3 Open;
@@ -23,6 +24,26 @@ public class DoorController : MonoBehaviour
         Open = new Vector3(Closed.x + Width, Closed.y, Closed.z);
 
     }
+    //private void OnValidate()
+    //{
+    //    if(Closed == Vector3.zero)
+    //    {
+    //        Closed = new Vector3(Door.transform.localPosition.x, Door.transform.localPosition.y, Door.transform.localPosition.z);
+    //        Debug.Log(Closed);
+    //    }
+        
+    //    if (Start_Open){
+    //        if (Open == Vector3.zero)
+    //        {
+    //            Open = Door.transform.localPosition = new Vector3(Closed.x + Width, Closed.y, Closed.z);
+    //            Debug.Log(Open);
+    //        }
+    //    }
+    //    else
+    //    {
+    //        Door.transform.localPosition = Closed;
+    //    }
+    //}
 
     // Update is called once per frame
     void Update()
@@ -53,7 +74,7 @@ public class DoorController : MonoBehaviour
         if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Enemy"))
         {
             OpenDoor();
-            Debug.Log("Door Opening.");
+            //Debug.Log("Door Opening.");
         }
         
     }
@@ -63,7 +84,7 @@ public class DoorController : MonoBehaviour
         if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Enemy"))
         {
             CloseDoor();
-            Debug.Log("Door Closing.");
+            //Debug.Log("Door Closing.");
         }
     }
 }

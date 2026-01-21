@@ -15,7 +15,7 @@ public class Animation_State_Controller : MonoBehaviour
     {
         if (val)
         {
-            SetIsRunning(false);
+            SetIsAiming(false);
         }
         animator.SetBool("isWalking?", val);
     }
@@ -27,10 +27,7 @@ public class Animation_State_Controller : MonoBehaviour
 
     public void SetIsRunning(bool val)
     {
-        if (val)
-        {
-            SetIsWalking(false);
-        }
+        
         animator.SetBool("isRunning", val);
     }
 
@@ -58,15 +55,6 @@ public class Animation_State_Controller : MonoBehaviour
     {
         return animator.GetBool("isFiring");
     }
-    void movement()
-    {
-    
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        movement();
 
-        
-    }
-}
+    
+ };

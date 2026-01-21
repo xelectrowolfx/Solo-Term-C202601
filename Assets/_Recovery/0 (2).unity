@@ -1356,6 +1356,10 @@ PrefabInstance:
       value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 6411297811154935889, guid: 3efed8a15e47cc04cac25612aed99fe2, type: 3}
+      propertyPath: shootRate
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6411297811154935889, guid: 3efed8a15e47cc04cac25612aed99fe2, type: 3}
       propertyPath: ignorelayer.m_Bits
       value: 8
       objectReference: {fileID: 0}
@@ -2443,10 +2447,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 292452675}
     m_Modifications:
-    - target: {fileID: 2441839658288699042, guid: c6ac0f3e424a1014f8eca24c43662f5a, type: 3}
-      propertyPath: m_ExcludeLayers.m_Bits
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 3799310518682633195, guid: c6ac0f3e424a1014f8eca24c43662f5a, type: 3}
       propertyPath: m_Name
       value: Prefab Wall-Door
@@ -2509,10 +2509,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 292452675}
     m_Modifications:
-    - target: {fileID: 2441839658288699042, guid: c6ac0f3e424a1014f8eca24c43662f5a, type: 3}
-      propertyPath: m_ExcludeLayers.m_Bits
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 3799310518682633195, guid: c6ac0f3e424a1014f8eca24c43662f5a, type: 3}
       propertyPath: m_Name
       value: Prefab Wall-Door (3)
@@ -4277,10 +4273,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 292452675}
     m_Modifications:
-    - target: {fileID: 2441839658288699042, guid: c6ac0f3e424a1014f8eca24c43662f5a, type: 3}
-      propertyPath: m_ExcludeLayers.m_Bits
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 3799310518682633195, guid: c6ac0f3e424a1014f8eca24c43662f5a, type: 3}
       propertyPath: m_Name
       value: Prefab Wall-Door (2)
@@ -5943,10 +5935,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 292452675}
     m_Modifications:
-    - target: {fileID: 2441839658288699042, guid: c6ac0f3e424a1014f8eca24c43662f5a, type: 3}
-      propertyPath: m_ExcludeLayers.m_Bits
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 3799310518682633195, guid: c6ac0f3e424a1014f8eca24c43662f5a, type: 3}
       propertyPath: m_Name
       value: Prefab Wall-Door (1)
@@ -7295,10 +7283,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 292452675}
     m_Modifications:
-    - target: {fileID: 2441839658288699042, guid: c6ac0f3e424a1014f8eca24c43662f5a, type: 3}
-      propertyPath: m_ExcludeLayers.m_Bits
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 3799310518682633195, guid: c6ac0f3e424a1014f8eca24c43662f5a, type: 3}
       propertyPath: m_Name
       value: Prefab Wall-Door (4)

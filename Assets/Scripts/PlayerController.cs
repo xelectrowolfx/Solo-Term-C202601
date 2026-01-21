@@ -4,6 +4,7 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour, IDamage
 {
+
     [Header("       Components      ")]
     [SerializeField] CharacterController controller;
 
@@ -16,6 +17,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     [Header("       Physics      ")]
     [Range(15, 40)][SerializeField] int gravity;
+    [SerializeField] LayerMask ignorelayer;
 
     [Header("       Gun      ")]
     [SerializeField] bool DrawDebug;
@@ -100,9 +102,9 @@ public class PlayerController : MonoBehaviour, IDamage
         shootTimer = 0;
 
         RaycastHit Hit;
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out Hit, shootDist))
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out Hit, shootDist, ~ignorelayer))
         {
-            Debug.Log(Hit.collider.name);
+            Debug.Log("Attempted to Shoot: " + Hit.collider.name);
             IDamage dmg = Hit.collider.GetComponent<IDamage>();
             if (dmg != null)
             {
