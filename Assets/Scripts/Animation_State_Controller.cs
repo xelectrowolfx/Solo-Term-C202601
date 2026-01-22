@@ -8,7 +8,7 @@ public class Animation_State_Controller : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        Debug.Log(animator);
+       // Debug.Log(animator);
     }
 
     public void SetIsWalking(bool val)

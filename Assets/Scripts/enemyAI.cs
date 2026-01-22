@@ -57,8 +57,45 @@ public class enemyAI : MonoBehaviour, IDamage
         speedOrig = agent.speed;
         stopDist = agent.stoppingDistance;
         startingPos = transform.position;
+        stoppingDistOrig = agent.stoppingDistance;
+    }
+    void idle()
+    {
+        controller.SetIsAiming(false);
+        controller.SetIsRunning(false);
+        controller.SetIsWalking(false);
+        controller.SetIsFiring(false);
+    }
+    void walk()
+    {
+        controller.SetIsWalking(true);
+        controller.SetIsRunning(false);
+        agent.speed = speedOrig;
+        //Debug.Log("is Walking: " + controller.GetIsWalking());
+    }
+    void sprint()
+    {
+        controller.SetIsRunning(true);
+        controller.SetIsWalking(false);
+        if (agent.speed != speedOrig * AgentSprintMod)
+        {
+            agent.speed = agent.speed * AgentSprintMod;
+        }
     }
 
+    void aim()
+    {
+        //if (distance <= stopDist)
+        //{
+        //    //if we are walking or performing other actions we stop.
+        if (controller.GetIsWalking() || controller.GetIsRunning())
+        {
+            controller.SetIsWalking(false);
+            controller.SetIsRunning(false);
+        }
+        controller.SetIsAiming(true);
+
+    }
     // Update is called once per frame
     void Roam()
     {
@@ -69,6 +106,7 @@ public class enemyAI : MonoBehaviour, IDamage
         NavMeshHit hit;
         NavMesh.SamplePosition(ranPos, out hit, RoamDist, 1);
         agent.SetDestination(hit.position);
+        walk();
 
 
     }
@@ -76,8 +114,11 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         if (agent.remainingDistance < 0.01f && RoamTimer >= RoamPauseTime)
         {
-            Roam();
-
+           Roam();
+        }
+        else if (agent.remainingDistance < 0.01f && RoamTimer< RoamPauseTime)
+        {
+           idle();
         }
     }
     void Update()
@@ -143,6 +184,8 @@ public class enemyAI : MonoBehaviour, IDamage
                 if (agent.remainingDistance <= agent.stoppingDistance)
                 {
                     faceTarget();
+
+                    aim();
                 }
 
                 if (shootTimer >= shootRate)
@@ -156,7 +199,6 @@ public class enemyAI : MonoBehaviour, IDamage
         }
 
         agent.stoppingDistance = 0;
-
         return false;
     }
     private void OnTriggerEnter(Collider other)
@@ -182,13 +224,14 @@ public class enemyAI : MonoBehaviour, IDamage
         playerdir = GameManager.instance.player.transform.position - transform.position;
 
         //Direct Agent to Player
-        agent.SetDestination(GameManager.instance.player.transform.position);
+        //agent.SetDestination(GameManager.instance.player.transform.position);
 
         //Get Distance
         distance = agent.remainingDistance;
 
         //check if we can see player
-        if (agent.remainingDistance < 0.1f)
+        shootTimer += Time.deltaTime;
+        if (agent.remainingDistance < 0.1f + Random.value)
         {
             RoamTimer += Time.deltaTime;
         }
@@ -199,6 +242,7 @@ public class enemyAI : MonoBehaviour, IDamage
         }
         else if (!playerinTrigger)
         {
+            
             checkRoam();
         }
 
@@ -214,7 +258,7 @@ public class enemyAI : MonoBehaviour, IDamage
         //        {
         //            agent.speed = agent.speed * AgentSprintMod;
         //        }
-                
+
         //    }
         //    else
         //    {
@@ -232,7 +276,7 @@ public class enemyAI : MonoBehaviour, IDamage
         //        controller.SetIsRunning(false);
         //    }
 
-            
+
 
         //    //we are in stopping distance so we stop, and look at player to shoot.
         //    faceTarget();
@@ -242,12 +286,12 @@ public class enemyAI : MonoBehaviour, IDamage
         //    if(shootTimer >= shootRate)
         //    {
         //        controller.SetIsFiring(true);
-                
+
         //        shoot();
 
         //        controller.SetIsFiring(false);
         //    }
-            
+
 
         //}
     }
