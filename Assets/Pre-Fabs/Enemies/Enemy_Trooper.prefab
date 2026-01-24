@@ -76,7 +76,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: abeb185fcf53fd34b978a9e37ad7af46, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.04839003
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: abeb185fcf53fd34b978a9e37ad7af46, type: 3}
       propertyPath: m_LocalPosition.z
@@ -208,10 +208,11 @@ MonoBehaviour:
   faceTargetSpeed: 70
   AgentSprintMod: 1.6
   AgentSprintDistance: 20
-  FOV: 20
+  AgentAlertTime: 30
+  FOV: 30
   IgnoreLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   RoamDist: 15
   RoamPauseTime: 3
 --- !u!135 &4980297938609257987
@@ -261,12 +262,12 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 15
+  m_StoppingDistance: 25
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 0
+  m_BaseOffset: -0.1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!136 &341697279989430539

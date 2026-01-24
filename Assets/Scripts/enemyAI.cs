@@ -26,28 +26,37 @@ public class enemyAI : MonoBehaviour, IDamage
     [Range(20,100)][SerializeField] int faceTargetSpeed = 50;
     [Range(1.1f,3.0f)][SerializeField] float AgentSprintMod = 1.2f;
     [Range(20,50)][SerializeField] int AgentSprintDistance = 30;
+    [Range(5, 120)][SerializeField] int AgentAlertTime = 30;
     [SerializeField] int FOV;
     [SerializeField] LayerMask IgnoreLayer;
 
     [SerializeField] int RoamDist;
     [SerializeField] int RoamPauseTime;
 
+    //Player
+    float angleToPlayer;
     Vector3 playerdir;
-    Vector3 startingPos;
+    Vector3 LastKnownLoc;
 
+    //float distance;
 
+    //Booleans
+    bool Alerted;
     bool playerinTrigger;
 
+    //Initial Vars
+    Vector3 startingPos;
+    float speedOrig;
     Color colorOrig;
-    
-    float RoamTimer;
     float stoppingDistOrig;
 
+
+    //Timers
+    float RoamTimer;
     float shootTimer;
-    float angleToPlayer;
-    float speedOrig;
-    float  distance;
-    float stopDist;
+
+   
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -55,7 +64,6 @@ public class enemyAI : MonoBehaviour, IDamage
         colorOrig = model.material.color;
         GameManager.instance.updateGameGoal(1);
         speedOrig = agent.speed;
-        stopDist = agent.stoppingDistance;
         startingPos = transform.position;
         stoppingDistOrig = agent.stoppingDistance;
     }
@@ -123,11 +131,7 @@ public class enemyAI : MonoBehaviour, IDamage
     }
     void Update()
     {
-        shootTimer += Time.deltaTime;
         AI();
-       
-
-
     }
 
     void shoot()
@@ -160,7 +164,13 @@ public class enemyAI : MonoBehaviour, IDamage
             StartCoroutine(flashRed());
         }
     }
+    private void EnemySpotted()
+    {
+        Alerted = true;
+        LastKnownLoc = GameManager.instance.player.transform.position;
+        sprint();
 
+    }
     IEnumerator flashRed()
     {
         model.material.color = Color.red;
@@ -180,6 +190,8 @@ public class enemyAI : MonoBehaviour, IDamage
             if (angleToPlayer <= FOV && hit.collider.CompareTag("Player"))
             {
                 agent.SetDestination(GameManager.instance.player.transform.position);
+
+                
 
                 if (agent.remainingDistance <= agent.stoppingDistance)
                 {
@@ -227,14 +239,15 @@ public class enemyAI : MonoBehaviour, IDamage
         //agent.SetDestination(GameManager.instance.player.transform.position);
 
         //Get Distance
-        distance = agent.remainingDistance;
+        //distance = agent.remainingDistance;
 
-        //check if we can see player
         shootTimer += Time.deltaTime;
         if (agent.remainingDistance < 0.1f + Random.value)
         {
             RoamTimer += Time.deltaTime;
         }
+        
+        //check if we can see player
 
         if (playerinTrigger && !CanSeePlayer())
         {
