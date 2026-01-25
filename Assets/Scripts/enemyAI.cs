@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Color = UnityEngine.Color;
 
-public class enemyAI : MonoBehaviour, IDamage
+public class enemyAI : MonoBehaviour, IDamage, IFootstep
 
 {
     [Header("------ Enemy Dependancies ------")]
@@ -14,7 +14,11 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] Transform headPos;
     [SerializeField] GameObject dropItem;
     [SerializeField] AudioClip gunfire;
-    [Range(0f, 1f)][SerializeField] float Volume = .5f;
+    [Range(0f, 1f)][SerializeField] float Gun_Volume = .5f;
+    [SerializeField] AudioClip footSteps;
+    [Range(0f, 1f)][SerializeField] float FootSteps_Volume = .25f;
+    [SerializeField] GameObject footSensor_L;
+    [SerializeField] GameObject footSensor_R;
 
     [Header("------ Enemy STATS ------")]
     [Range(1, 10)][SerializeField] int HP = 5;
@@ -174,7 +178,7 @@ public class enemyAI : MonoBehaviour, IDamage
         shootTimer = 0;
         controller.SetIsFiring(true);
         Instantiate(bullet, shootPos.position, transform.rotation);
-        AudioSource.PlayClipAtPoint(gunfire, shootPos.position, Volume);
+        AudioSource.PlayClipAtPoint(gunfire, shootPos.position, Gun_Volume);
         controller.SetIsFiring(false);
 
     }
@@ -312,5 +316,10 @@ public class enemyAI : MonoBehaviour, IDamage
             }
         }
 
+    }
+
+    public void FootStepEvent(Vector3 Pos)
+    {
+        throw new System.NotImplementedException();
     }
 }
