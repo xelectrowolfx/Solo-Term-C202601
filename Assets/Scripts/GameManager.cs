@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public PlayerController playerScript;
     public Image playerHPBar;
     public GameObject gameFlash;
-
+    public int BodyCleanUpTime = 3;
     float timeScaleOrig;
     
     int gameGoalCount;

@@ -17,6 +17,10 @@ public class enemyAI : MonoBehaviour, IDamage, IFootstep
     [Range(0f, 1f)][SerializeField] float Gun_Volume = .5f;
     [SerializeField] AudioClip footSteps;
     [Range(0f, 1f)][SerializeField] float FootSteps_Volume = .25f;
+    [SerializeField] AudioClip Hurt;
+    [Range(0f, 1f)][SerializeField] float Hurt_Volume = .25f;
+    [SerializeField] AudioClip Dying;
+    [Range(0f, 1f)][SerializeField] float Dying_Volume = .25f;
 
     [Header("------ Enemy STATS ------")]
     [Range(1, 10)][SerializeField] int HP = 5;
@@ -197,11 +201,15 @@ public class enemyAI : MonoBehaviour, IDamage, IFootstep
             {
                 Instantiate(dropItem, transform.position, transform.rotation);
             }
-            Destroy(gameObject);
+            controller.SetPlayDeath();
+            agent.enabled = false;
+            AudioSource.PlayClipAtPoint(Dying, transform.position, Dying_Volume);
+            DestroyBody();
         }
         else
         {
             StartCoroutine(flashRed());
+            AudioSource.PlayClipAtPoint(Hurt, transform.position, Hurt_Volume);
         }
     }
     private void EnemySpotted()
@@ -217,6 +225,12 @@ public class enemyAI : MonoBehaviour, IDamage, IFootstep
         yield return new WaitForSeconds(0.1f);
         model.material.color = colorOrig;
 
+    }
+
+    IEnumerator DestroyBody()
+    {
+        yield return new WaitForSeconds(GameManager.instance.BodyCleanUpTime);
+        Destroy(gameObject);
     }
     bool CanSeePlayer()
     {

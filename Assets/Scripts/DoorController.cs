@@ -9,7 +9,7 @@ public class DoorController : MonoBehaviour
     [SerializeField] float Width;
     [SerializeField] int OpenTime;
     [SerializeField] LayerField Layer;
-    [SerializeField] bool Start_Open = false;
+   
 
     Vector3 Closed;
     Vector3 Open;

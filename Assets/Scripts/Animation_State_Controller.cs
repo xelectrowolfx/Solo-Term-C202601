@@ -56,5 +56,8 @@ public class Animation_State_Controller : MonoBehaviour
         return animator.GetBool("isFiring");
     }
 
-    
+    public void SetPlayDeath()
+    {
+        animator.SetTrigger("Dying");
+    }
  };
