@@ -349,6 +349,10 @@ MonoBehaviour:
   Gun_Volume: 0.5
   footSteps: {fileID: 8300000, guid: c1d26bebdf9b28d4c9772f6bfe2d9770, type: 3}
   FootSteps_Volume: 0.25
+  Hurt: {fileID: 8300000, guid: b5ca5781906e708438a37609a8162a36, type: 3}
+  Hurt_Volume: 0.25
+  Dying: {fileID: 8300000, guid: 2cc19fd6cea026f49b37cc886cc0dc43, type: 3}
+  Dying_Volume: 0.25
   HP: 5
   shootRate: 1
   agent: {fileID: 3100227130032790159}

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Drawing;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using Color = UnityEngine.Color;
@@ -64,7 +65,8 @@ public class enemyAI : MonoBehaviour, IDamage, IFootstep
     float shootTimer;
     float AlertedTimer;
     float SearchTimer;
-   
+    private bool Alive = true;
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -172,7 +174,11 @@ public class enemyAI : MonoBehaviour, IDamage, IFootstep
     }
     void Update()
     {
-        AI();
+        if (Alive)
+        {
+            AI();
+        }
+        
     }
 
     void shoot()
@@ -192,25 +198,32 @@ public class enemyAI : MonoBehaviour, IDamage, IFootstep
     }
     public void takeDamage(int amount)
     {
-        HP -= amount;
-        EnemySpotted();
-        if(HP <= 0)
+        if (Alive)
         {
-            GameManager.instance.updateGameGoal(-1);
-            if (dropItem != null)
+            HP -= amount;
+            EnemySpotted();
+
+
+            if (HP <= 0)
             {
-                Instantiate(dropItem, transform.position, transform.rotation);
+                GameManager.instance.updateGameGoal(-1);
+                if (dropItem != null)
+                {
+                    Instantiate(dropItem, transform.position, transform.rotation);
+                }
+                controller.SetPlayDeath();
+                agent.enabled = false;
+                AudioSource.PlayClipAtPoint(Dying, transform.position, Dying_Volume);
+                Alive = false;
+                DestroyBody();
             }
-            controller.SetPlayDeath();
-            agent.enabled = false;
-            AudioSource.PlayClipAtPoint(Dying, transform.position, Dying_Volume);
-            DestroyBody();
+            else
+            {
+                StartCoroutine(flashRed());
+                AudioSource.PlayClipAtPoint(Hurt, transform.position, Hurt_Volume);
+            }
         }
-        else
-        {
-            StartCoroutine(flashRed());
-            AudioSource.PlayClipAtPoint(Hurt, transform.position, Hurt_Volume);
-        }
+        
     }
     private void EnemySpotted()
     {
