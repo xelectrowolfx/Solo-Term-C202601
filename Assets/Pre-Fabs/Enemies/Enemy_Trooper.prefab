@@ -277,12 +277,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: abeb185fcf53fd34b978a9e37ad7af46, type: 3}
+      propertyPath: m_AnimatePhysics
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: abeb185fcf53fd34b978a9e37ad7af46, type: 3}
       propertyPath: m_WarningMessage
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: abeb185fcf53fd34b978a9e37ad7af46, type: 3}
       propertyPath: m_ApplyRootMotion
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6035218986307100130, guid: abeb185fcf53fd34b978a9e37ad7af46, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'

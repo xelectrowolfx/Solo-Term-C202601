@@ -229,6 +229,7 @@ public class enemyAI : MonoBehaviour, IDamage, IFootstep
     {
         Alerted = true;
         LastKnownLoc = GameManager.instance.player.transform.position;
+        agent.SetDestination(LastKnownLoc);
         sprint();
 
     }
