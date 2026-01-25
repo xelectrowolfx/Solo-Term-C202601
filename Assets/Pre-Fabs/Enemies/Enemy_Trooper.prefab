@@ -201,14 +201,14 @@ MonoBehaviour:
   bullet: {fileID: 7307199370166870057, guid: 42246933517c66f4097763e806439334, type: 3}
   headPos: {fileID: 3591645242813677055}
   dropItem: {fileID: 0}
+  gunfire: {fileID: 8300000, guid: 5c596d3f22a242c459954b2dc9e0d216, type: 3}
   HP: 5
   shootRate: 1
   agent: {fileID: 3100227130032790159}
   controller: {fileID: 8073712892299992572}
   faceTargetSpeed: 70
   AgentSprintMod: 2
-  AgentSprintDistance: 20
-  AgentAlertedSearchDistance: 5
+  AgentAlertedSearchDistance: 10
   AgentAlertTime: 30
   AgentAlertPauseTime: 2
   FOV: 30

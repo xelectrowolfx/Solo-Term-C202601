@@ -13,6 +13,8 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] GameObject bullet;
     [SerializeField] Transform headPos;
     [SerializeField] GameObject dropItem;
+    [SerializeField] AudioClip gunfire;
+    [Range(0f, 1f)][SerializeField] float Volume = .5f;
 
     [Header("------ Enemy STATS ------")]
     [Range(1, 10)][SerializeField] int HP = 5;
@@ -24,8 +26,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
     [Header("------ AI Stats ------")]
     [Range(20,100)][SerializeField] int faceTargetSpeed = 50;
-    [Range(1.1f,3.0f)][SerializeField] float AgentSprintMod = 1.2f;
-    [Range(20,50)][SerializeField] int AgentSprintDistance = 30;
+    [Range(1.1f,3.0f)][SerializeField] float AgentSprintMod = 2f;
     [Range(10, 50)][SerializeField] int AgentAlertedSearchDistance = 10;
     [Range(5, 120)][SerializeField] int AgentAlertTime = 30;
     [Range(1, 10)][SerializeField] int AgentAlertPauseTime = 2;
@@ -40,7 +41,6 @@ public class enemyAI : MonoBehaviour, IDamage
     Vector3 playerdir;
     Vector3 LastKnownLoc;
 
-    //float distance;
 
     //Booleans
     bool Alerted;
@@ -82,7 +82,6 @@ public class enemyAI : MonoBehaviour, IDamage
         controller.SetIsWalking(true);
         controller.SetIsRunning(false);
         agent.speed = speedOrig;
-        //Debug.Log("is Walking: " + controller.GetIsWalking());
     }
     void sprint()
     {
@@ -98,9 +97,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
     void aim()
     {
-        //if (distance <= stopDist)
-        //{
-        //    //if we are walking or performing other actions we stop.
+        
         if (controller.GetIsWalking() || controller.GetIsRunning())
         {
             controller.SetIsWalking(false);
@@ -177,6 +174,7 @@ public class enemyAI : MonoBehaviour, IDamage
         shootTimer = 0;
         controller.SetIsFiring(true);
         Instantiate(bullet, shootPos.position, transform.rotation);
+        AudioSource.PlayClipAtPoint(gunfire, shootPos.position, Volume);
         controller.SetIsFiring(false);
 
     }
@@ -273,14 +271,10 @@ public class enemyAI : MonoBehaviour, IDamage
     }
     private void AI()
     {
-        //Get Player Direction
+   
         playerdir = GameManager.instance.player.transform.position - transform.position;
 
-        //Direct Agent to Player
-        //agent.SetDestination(GameManager.instance.player.transform.position);
-
-        //Get Distance
-        //distance = agent.remainingDistance;
+     
 
         shootTimer += Time.deltaTime;
 
@@ -290,7 +284,7 @@ public class enemyAI : MonoBehaviour, IDamage
             SearchTimer += Time.deltaTime;
         }
         
-        //check if we can see player
+  
 
         if (playerinTrigger && !CanSeePlayer())
         {
@@ -318,53 +312,5 @@ public class enemyAI : MonoBehaviour, IDamage
             }
         }
 
-        //Behavior Tree
-        //if (distance > stopDist && distance != 0)
-        //{
-        //    controller.SetIsAiming(false);
-        //    if (distance >= AgentSprintDistance )
-        //    {
-        //        controller.SetIsRunning(true);
-        //        controller.SetIsWalking(false);
-        //        if(agent.speed != speedOrig * AgentSprintMod)
-        //        {
-        //            agent.speed = agent.speed * AgentSprintMod;
-        //        }
-
-        //    }
-        //    else
-        //    {
-        //        controller.SetIsWalking(true);
-        //        controller.SetIsRunning(false);
-        //        agent.speed = speedOrig;
-        //    }
-        //}
-        //if (distance <= stopDist)
-        //{
-        //    //if we are walking or performing other actions we stop.
-        //    if (controller.GetIsWalking() || controller.GetIsRunning())
-        //    {
-        //        controller.SetIsWalking(false);
-        //        controller.SetIsRunning(false);
-        //    }
-
-
-
-        //    //we are in stopping distance so we stop, and look at player to shoot.
-        //    faceTarget();
-        //    //Debug.Log(distance + "m to player.");
-
-        //    controller.SetIsAiming(true);
-        //    if(shootTimer >= shootRate)
-        //    {
-        //        controller.SetIsFiring(true);
-
-        //        shoot();
-
-        //        controller.SetIsFiring(false);
-        //    }
-
-
-        //}
     }
 }
