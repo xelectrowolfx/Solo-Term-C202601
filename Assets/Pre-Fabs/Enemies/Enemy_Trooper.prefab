@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6784636985098817475}
   - component: {fileID: 3154469586000091480}
+  - component: {fileID: 4369082433337063378}
   m_Layer: 0
   m_Name: L_FootSensor
   m_TagString: Untagged
@@ -55,6 +56,19 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &4369082433337063378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1297293169259707911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 436eb0a20aba73146b705c205ee4d68b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FootSteps
+  Parent: {fileID: 2751816804566071379}
 --- !u!1 &2472971404010033387
 GameObject:
   m_ObjectHideFlags: 0
@@ -96,6 +110,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8269078610781126606}
   - component: {fileID: 6945070405572162349}
+  - component: {fileID: 2787687469082839465}
   m_Layer: 0
   m_Name: R_FootSensor
   m_TagString: Untagged
@@ -141,6 +156,19 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &2787687469082839465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2770604167442967119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 436eb0a20aba73146b705c205ee4d68b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FootSteps
+  Parent: {fileID: 2751816804566071379}
 --- !u!1 &7706971545919933328
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,7 +346,11 @@ MonoBehaviour:
   headPos: {fileID: 3591645242813677055}
   dropItem: {fileID: 0}
   gunfire: {fileID: 8300000, guid: 5c596d3f22a242c459954b2dc9e0d216, type: 3}
-  Volume: 0.5
+  Gun_Volume: 0.5
+  footSteps: {fileID: 8300000, guid: c1d26bebdf9b28d4c9772f6bfe2d9770, type: 3}
+  FootSteps_Volume: 0.25
+  footSensor_L: {fileID: 0}
+  footSensor_R: {fileID: 0}
   HP: 5
   shootRate: 1
   agent: {fileID: 3100227130032790159}

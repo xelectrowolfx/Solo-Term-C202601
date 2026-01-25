@@ -17,8 +17,6 @@ public class enemyAI : MonoBehaviour, IDamage, IFootstep
     [Range(0f, 1f)][SerializeField] float Gun_Volume = .5f;
     [SerializeField] AudioClip footSteps;
     [Range(0f, 1f)][SerializeField] float FootSteps_Volume = .25f;
-    [SerializeField] GameObject footSensor_L;
-    [SerializeField] GameObject footSensor_R;
 
     [Header("------ Enemy STATS ------")]
     [Range(1, 10)][SerializeField] int HP = 5;
@@ -320,6 +318,6 @@ public class enemyAI : MonoBehaviour, IDamage, IFootstep
 
     public void FootStepEvent(Vector3 Pos)
     {
-        throw new System.NotImplementedException();
+        AudioSource.PlayClipAtPoint(footSteps, Pos, FootSteps_Volume);
     }
 }
