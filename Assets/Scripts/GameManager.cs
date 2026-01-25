@@ -21,7 +21,6 @@ public class GameManager : MonoBehaviour
     float timeScaleOrig;
     
     int gameGoalCount;
-
     public static GameManager instance;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -30,6 +29,8 @@ public class GameManager : MonoBehaviour
         timeScaleOrig = Time.timeScale;
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<PlayerController>();
+      
+
 
     }
 

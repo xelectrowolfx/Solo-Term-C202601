@@ -215,7 +215,7 @@ public class enemyAI : MonoBehaviour, IDamage, IFootstep
                 agent.enabled = false;
                 AudioSource.PlayClipAtPoint(Dying, transform.position, Dying_Volume);
                 Alive = false;
-                DestroyBody();
+               StartCoroutine( DestroyBody());
             }
             else
             {

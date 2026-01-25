@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEditor.UIElements;
 using UnityEngine;
@@ -9,7 +10,8 @@ public class DoorController : MonoBehaviour
     [SerializeField] float Width;
     [SerializeField] int OpenTime;
     [SerializeField] LayerField Layer;
-   
+    [SerializeField] AudioSource Source;
+    [SerializeField] float Delay = 1;
 
     Vector3 Closed;
     Vector3 Open;
@@ -57,7 +59,23 @@ public class DoorController : MonoBehaviour
         }
         
     }
-
+    IEnumerator OpenDelay()
+    {
+        yield return new WaitForSeconds(Delay);
+        OpenDoor();
+    }
+    IEnumerator CloseDelay()
+    {
+        yield return new WaitForSeconds(Delay);
+        CloseDoor();
+    }
+    void playSound()
+    {
+        if (Source != null)
+        {
+            Source.Play();
+        }
+    }
     void OpenDoor()
     {
         targetPosition = Open;
@@ -73,7 +91,10 @@ public class DoorController : MonoBehaviour
 
         if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Enemy"))
         {
-            OpenDoor();
+            playSound();
+           StartCoroutine(OpenDelay());
+           
+            
             //Debug.Log("Door Opening.");
         }
         
@@ -83,7 +104,10 @@ public class DoorController : MonoBehaviour
         if (other.isTrigger) { return; }
         if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Enemy"))
         {
-            CloseDoor();
+            playSound();
+            StartCoroutine(CloseDelay());
+            
+           
             //Debug.Log("Door Closing.");
         }
     }
