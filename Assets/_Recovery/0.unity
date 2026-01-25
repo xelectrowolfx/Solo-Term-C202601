@@ -4039,7 +4039,7 @@ GameObject:
   m_Component:
   - component: {fileID: 988042572}
   - component: {fileID: 988042571}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: NavMesh Surface
   m_TagString: Untagged
   m_Icon: {fileID: 0}

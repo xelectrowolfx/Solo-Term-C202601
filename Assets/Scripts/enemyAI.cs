@@ -26,7 +26,9 @@ public class enemyAI : MonoBehaviour, IDamage
     [Range(20,100)][SerializeField] int faceTargetSpeed = 50;
     [Range(1.1f,3.0f)][SerializeField] float AgentSprintMod = 1.2f;
     [Range(20,50)][SerializeField] int AgentSprintDistance = 30;
+    [Range(10, 50)][SerializeField] int AgentAlertedSearchDistance = 10;
     [Range(5, 120)][SerializeField] int AgentAlertTime = 30;
+    [Range(1, 10)][SerializeField] int AgentAlertPauseTime = 2;
     [SerializeField] int FOV;
     [SerializeField] LayerMask IgnoreLayer;
 
@@ -54,7 +56,8 @@ public class enemyAI : MonoBehaviour, IDamage
     //Timers
     float RoamTimer;
     float shootTimer;
-
+    float AlertedTimer;
+    float SearchTimer;
    
 
 
@@ -85,9 +88,11 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         controller.SetIsRunning(true);
         controller.SetIsWalking(false);
+        controller.SetIsAiming(false);
+
         if (agent.speed != speedOrig * AgentSprintMod)
         {
-            agent.speed = agent.speed * AgentSprintMod;
+            agent.speed = speedOrig * AgentSprintMod;
         }
     }
 
@@ -115,12 +120,44 @@ public class enemyAI : MonoBehaviour, IDamage
         NavMesh.SamplePosition(ranPos, out hit, RoamDist, 1);
         agent.SetDestination(hit.position);
         walk();
+    }
 
+    void AlertedSearch()
+    {
+        SearchTimer = 0;
+        agent.stoppingDistance = 0;
+        Vector3 ranpos = Random.insideUnitSphere * AgentAlertedSearchDistance;
+        ranpos += LastKnownLoc;
+        NavMeshHit hit;
+        NavMesh.SamplePosition(ranpos, out hit, AgentAlertedSearchDistance, 1);
+        agent.SetDestination(hit.position);
+        sprint();
+    }
+
+    void CheckSearch()
+    {
+        if(AlertedTimer < AgentAlertTime && Alerted)
+        {
+            if (agent.remainingDistance < 0.01f && SearchTimer >= AgentAlertPauseTime && Alerted)
+            {
+                AlertedSearch();
+            }
+            else if (agent.remainingDistance < 0.01f && SearchTimer < AgentAlertPauseTime && Alerted)
+            {
+                idle();
+            }
+        }
+        else
+        {
+            Alerted = false;
+            AlertedTimer = 0;
+        }
+        
 
     }
     void checkRoam()
     {
-        if (agent.remainingDistance < 0.01f && RoamTimer >= RoamPauseTime)
+        if (agent.remainingDistance < 0.01f && RoamTimer >= RoamPauseTime && !Alerted)
         {
            Roam();
         }
@@ -128,6 +165,7 @@ public class enemyAI : MonoBehaviour, IDamage
         {
            idle();
         }
+      
     }
     void Update()
     {
@@ -137,7 +175,9 @@ public class enemyAI : MonoBehaviour, IDamage
     void shoot()
     {
         shootTimer = 0;
+        controller.SetIsFiring(true);
         Instantiate(bullet, shootPos.position, transform.rotation);
+        controller.SetIsFiring(false);
 
     }
 
@@ -149,7 +189,7 @@ public class enemyAI : MonoBehaviour, IDamage
     public void takeDamage(int amount)
     {
         HP -= amount;
-
+        EnemySpotted();
         if(HP <= 0)
         {
             GameManager.instance.updateGameGoal(-1);
@@ -190,7 +230,7 @@ public class enemyAI : MonoBehaviour, IDamage
             if (angleToPlayer <= FOV && hit.collider.CompareTag("Player"))
             {
                 agent.SetDestination(GameManager.instance.player.transform.position);
-
+                EnemySpotted();
                 
 
                 if (agent.remainingDistance <= agent.stoppingDistance)
@@ -200,7 +240,7 @@ public class enemyAI : MonoBehaviour, IDamage
                     aim();
                 }
 
-                if (shootTimer >= shootRate)
+                if (shootTimer >= shootRate && agent.remainingDistance <= agent.stoppingDistance)
                 {
                     shoot();
                 }
@@ -208,6 +248,7 @@ public class enemyAI : MonoBehaviour, IDamage
                 agent.stoppingDistance = stoppingDistOrig;
                 return true;
             }
+           
         }
 
         agent.stoppingDistance = 0;
@@ -242,21 +283,39 @@ public class enemyAI : MonoBehaviour, IDamage
         //distance = agent.remainingDistance;
 
         shootTimer += Time.deltaTime;
+
         if (agent.remainingDistance < 0.1f + Random.value)
         {
             RoamTimer += Time.deltaTime;
+            SearchTimer += Time.deltaTime;
         }
         
         //check if we can see player
 
         if (playerinTrigger && !CanSeePlayer())
         {
-            checkRoam();
+            if (Alerted)
+            {
+                CheckSearch();
+                AlertedTimer += Time.deltaTime;
+            }
+            else
+            {
+                checkRoam();
+            }
+                
         }
         else if (!playerinTrigger)
         {
-            
-            checkRoam();
+            if (Alerted)
+            {
+                CheckSearch();
+            }
+            else
+            {
+                checkRoam();
+
+            }
         }
 
         //Behavior Tree

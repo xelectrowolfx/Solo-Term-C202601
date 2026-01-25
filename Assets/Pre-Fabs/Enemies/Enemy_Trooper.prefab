@@ -206,9 +206,11 @@ MonoBehaviour:
   agent: {fileID: 3100227130032790159}
   controller: {fileID: 8073712892299992572}
   faceTargetSpeed: 70
-  AgentSprintMod: 1.6
+  AgentSprintMod: 2
   AgentSprintDistance: 20
+  AgentAlertedSearchDistance: 5
   AgentAlertTime: 30
+  AgentAlertPauseTime: 2
   FOV: 30
   IgnoreLayer:
     serializedVersion: 2
