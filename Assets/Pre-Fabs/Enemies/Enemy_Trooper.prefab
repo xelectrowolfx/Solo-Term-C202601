@@ -271,7 +271,7 @@ PrefabInstance:
     - target: {fileID: 5866666021909216657, guid: abeb185fcf53fd34b978a9e37ad7af46, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 9fa6572a694c0ca41aa8a2158bf91736, type: 2}
+      objectReference: {fileID: 9100000, guid: b112dd2f530cedf4e92845630baf0079, type: 2}
     - target: {fileID: 5866666021909216657, guid: abeb185fcf53fd34b978a9e37ad7af46, type: 3}
       propertyPath: m_CullingMode
       value: 0
@@ -345,9 +345,9 @@ MonoBehaviour:
   bullet: {fileID: 7307199370166870057, guid: 42246933517c66f4097763e806439334, type: 3}
   headPos: {fileID: 3591645242813677055}
   dropItem: {fileID: 0}
-  gunfire: {fileID: 8300000, guid: 5c596d3f22a242c459954b2dc9e0d216, type: 3}
+  gunfire: {fileID: 8300000, guid: 04ccc0ebb8fa28c4786bda6afb382dd6, type: 3}
   Gun_Volume: 0.5
-  footSteps: {fileID: 8300000, guid: c1d26bebdf9b28d4c9772f6bfe2d9770, type: 3}
+  footSteps: {fileID: 8300000, guid: 3046ed030b10c294c9d3504076952da5, type: 3}
   FootSteps_Volume: 0.25
   Hurt: {fileID: 8300000, guid: b5ca5781906e708438a37609a8162a36, type: 3}
   Hurt_Volume: 0.25

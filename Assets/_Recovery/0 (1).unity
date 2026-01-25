@@ -581,13 +581,31 @@ MonoBehaviour:
   model: {fileID: 1716759599}
   shootPos: {fileID: 949287032}
   bullet: {fileID: 7307199370166870057, guid: 42246933517c66f4097763e806439334, type: 3}
+  headPos: {fileID: 0}
+  dropItem: {fileID: 0}
+  gunfire: {fileID: 0}
+  Gun_Volume: 0.5
+  footSteps: {fileID: 0}
+  FootSteps_Volume: 0.25
+  Hurt: {fileID: 0}
+  Hurt_Volume: 0.25
+  Dying: {fileID: 0}
+  Dying_Volume: 0.25
   HP: 5
   shootRate: 1
   agent: {fileID: 685557325}
   controller: {fileID: 685557321}
   faceTargetSpeed: 70
   AgentSprintMod: 1.2
-  AgentSprintDistance: 30
+  AgentAlertedSearchDistance: 10
+  AgentAlertTime: 30
+  AgentAlertPauseTime: 2
+  FOV: 0
+  IgnoreLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  RoamDist: 0
+  RoamPauseTime: 0
 --- !u!195 &685557325
 NavMeshAgent:
   m_ObjectHideFlags: 0
