@@ -404,7 +404,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: abeb185fcf53fd34b978a9e37ad7af46, type: 3}
       propertyPath: m_ApplyRootMotion
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6035218986307100130, guid: abeb185fcf53fd34b978a9e37ad7af46, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -511,21 +511,21 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c1d26bebdf9b28d4c9772f6bfe2d9770, type: 3}
   - {fileID: 8300000, guid: 6d471a5bf75caf64b934ec48d9003107, type: 3}
   - {fileID: 8300000, guid: 75c4196ed197676469509782d53db7c6, type: 3}
-  FootSteps_Volume: 0.25
+  FootSteps_Volume: 0.324
   Hurt:
   - {fileID: 8300000, guid: 3f950a74af5620a42aeaf5610f456c4e, type: 3}
   - {fileID: 8300000, guid: 57ecbe9f07812a74e8b12fbe6006268e, type: 3}
   - {fileID: 8300000, guid: 6a2cedd87134fbf43ba7ef90d8a0a5a7, type: 3}
-  Hurt_Volume: 0.25
+  Hurt_Volume: 0.418
   Dying:
   - {fileID: 8300000, guid: 2cc19fd6cea026f49b37cc886cc0dc43, type: 3}
   - {fileID: 8300000, guid: b5ca5781906e708438a37609a8162a36, type: 3}
   - {fileID: 8300000, guid: 911a7f5f59b53a349b07da1a2ce4ebeb, type: 3}
-  Dying_Volume: 0.25
+  Dying_Volume: 0.48
   PlayerSpotted: []
   PlayerSpotted_Volume: 0.25
   HP: 5
-  shootRate: 1
+  shootRate: 0.75
   agent: {fileID: 3100227130032790159}
   controller: {fileID: 8073712892299992572}
   Ik_Rig: {fileID: 5458576030995502621}

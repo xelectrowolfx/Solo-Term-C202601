@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - Enemy
+  - Ground
+  - PlayerSpawnPos
   layers:
   - Default
   - TransparentFX
@@ -17,7 +19,7 @@ TagManager:
   - Enemy Bullet
   - Door
   - Window
-  - 
+  - Gun
   - 
   - 
   - 

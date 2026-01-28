@@ -585,16 +585,22 @@ MonoBehaviour:
   dropItem: {fileID: 0}
   gunfire: {fileID: 0}
   Gun_Volume: 0.5
-  footSteps: {fileID: 0}
+  footSteps:
+  - {fileID: 0}
   FootSteps_Volume: 0.25
-  Hurt: {fileID: 0}
+  Hurt:
+  - {fileID: 0}
   Hurt_Volume: 0.25
-  Dying: {fileID: 0}
+  Dying:
+  - {fileID: 0}
   Dying_Volume: 0.25
+  PlayerSpotted: []
+  PlayerSpotted_Volume: 0.25
   HP: 5
   shootRate: 1
   agent: {fileID: 685557325}
   controller: {fileID: 685557321}
+  Ik_Rig: {fileID: 0}
   faceTargetSpeed: 70
   AgentSprintMod: 1.2
   AgentAlertedSearchDistance: 10
