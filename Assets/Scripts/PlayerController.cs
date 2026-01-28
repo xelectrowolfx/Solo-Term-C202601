@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEditor.UIElements;
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.Animations.Rigging;
 
 
 public class PlayerController : MonoBehaviour, IDamage, IPickup
@@ -9,6 +10,9 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
     [Header("       Components      ")]
     [SerializeField] CharacterController controller;
     [SerializeField] AudioSource aud;
+    [SerializeField] RigBuilder rig;
+    [SerializeField] Animator anim;
+
 
     [Header("       Audio Clips      ")]
     [SerializeField] AudioClip[] footSteps;
@@ -221,6 +225,8 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
     }
     void changeGun()
     {
+        anim.enabled = false;
+        rig.enabled = true;
         shootDamage = gunList[gunListPos].shootDamage;
         shootDist = gunList[gunListPos].shootDist;
         shootRate = gunList[gunListPos].shootRate;

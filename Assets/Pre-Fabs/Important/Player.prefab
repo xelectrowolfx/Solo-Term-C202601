@@ -253,6 +253,8 @@ GameObject:
   - component: {fileID: 2845431983370178118}
   - component: {fileID: 8934173635508815979}
   - component: {fileID: 1884665554942653692}
+  - component: {fileID: 4400723046114637292}
+  - component: {fileID: 2803263988811783176}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -290,6 +292,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   controller: {fileID: 120043031118959846}
   aud: {fileID: 1884665554942653692}
+  rig: {fileID: 4400723046114637292}
+  anim: {fileID: 0}
   footSteps: []
   FootSteps_Volume: 0.25
   Hurt: []
@@ -490,6 +494,64 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4400723046114637292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1180945137688839575}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fff0960ef4ea6e04eac66b4a7fd2189d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Animation.Rigging::UnityEngine.Animations.Rigging.RigBuilder
+  m_RigLayers:
+  - m_Rig: {fileID: 6688242201421650721}
+    m_Active: 0
+  - m_Rig: {fileID: 7112158421750763761}
+    m_Active: 0
+  - m_Rig: {fileID: 3449781471968525711}
+    m_Active: 0
+  m_Effectors:
+  - m_Transform: {fileID: 7804062824982034253}
+    m_Style:
+      shape: {fileID: 4300000, guid: c6793350c150f456688e39a81f97364a, type: 2}
+      color: {r: 1, g: 0, b: 0, a: 0.5}
+      size: 0.1
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
+    m_Visible: 1
+  - m_Transform: {fileID: 7804062824982034253}
+    m_Style:
+      shape: {fileID: 4300000, guid: c6793350c150f456688e39a81f97364a, type: 2}
+      color: {r: 1, g: 0, b: 0, a: 0.5}
+      size: 0.1
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
+    m_Visible: 1
+--- !u!95 &2803263988811783176
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1180945137688839575}
+  m_Enabled: 0
+  m_Avatar: {fileID: 9000000, guid: e88dcd6540285124689c0a7131b21fbe, type: 3}
+  m_Controller: {fileID: 9100000, guid: ea671c747d0c2084582d277e0d04896c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1588152935425536980
 GameObject:
   m_ObjectHideFlags: 0
@@ -826,7 +888,7 @@ Transform:
   m_GameObject: {fileID: 7913858117682556874}
   serializedVersion: 2
   m_LocalRotation: {x: -0.013778986, y: -0, z: -0, w: 0.9999051}
-  m_LocalPosition: {x: 0.132, y: -0.12, z: -0.231}
+  m_LocalPosition: {x: 0.132, y: -0.074, z: -0.231}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2447,6 +2509,10 @@ PrefabInstance:
       value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 8548810726247674844, guid: 6088bcda740b6164f86cd6c2d9c542bb, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8548810726247674844, guid: 6088bcda740b6164f86cd6c2d9c542bb, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: ea671c747d0c2084582d277e0d04896c, type: 2}
@@ -2612,10 +2678,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2324797332785686950, guid: 6088bcda740b6164f86cd6c2d9c542bb, type: 3}
       insertIndex: 0
       addedObject: {fileID: 1745099397517073403}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3100876192354874140, guid: 6088bcda740b6164f86cd6c2d9c542bb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1167373864840687581}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6088bcda740b6164f86cd6c2d9c542bb, type: 3}
 --- !u!4 &103348515212035751 stripped
 Transform:
@@ -2647,31 +2710,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2324797332785686950, guid: 6088bcda740b6164f86cd6c2d9c542bb, type: 3}
   m_PrefabInstance: {fileID: 8252489511044887743}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &6453162435060729763 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3100876192354874140, guid: 6088bcda740b6164f86cd6c2d9c542bb, type: 3}
-  m_PrefabInstance: {fileID: 8252489511044887743}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1167373864840687581
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6453162435060729763}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fff0960ef4ea6e04eac66b4a7fd2189d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.Animation.Rigging::UnityEngine.Animations.Rigging.RigBuilder
-  m_RigLayers:
-  - m_Rig: {fileID: 6688242201421650721}
-    m_Active: 1
-  - m_Rig: {fileID: 3449781471968525711}
-    m_Active: 0
-  - m_Rig: {fileID: 7112158421750763761}
-    m_Active: 0
-  m_Effectors: []
 --- !u!4 &8219058202078509932 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 38648520664797139, guid: 6088bcda740b6164f86cd6c2d9c542bb, type: 3}

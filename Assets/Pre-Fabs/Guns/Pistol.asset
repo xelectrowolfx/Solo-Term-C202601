@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f62ea4ef0fbbc4b428ff442c0f0b7620, type: 3}
-  m_Name: Modern_Rifle
+  m_Name: Pistol
   m_EditorClassIdentifier: Assembly-CSharp::GunStats
   gunModel: {fileID: 919132149155446097, guid: c731d5bef98000d4094fb073c0ae1c31, type: 3}
   shootDamage: 2
