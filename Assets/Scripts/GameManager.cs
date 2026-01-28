@@ -19,7 +19,9 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public PlayerController playerScript;
     public Image playerHPBar;
+    public Image playerShieldBar;
     public GameObject DamageScreen;
+    public GameObject DamageScreenShield;
     public GameObject playerSpawnPos;
     public int BodyCleanUpTime;
 

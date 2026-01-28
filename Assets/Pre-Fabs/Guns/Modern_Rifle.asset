@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f62ea4ef0fbbc4b428ff442c0f0b7620, type: 3}
   m_Name: Modern_Rifle
   m_EditorClassIdentifier: Assembly-CSharp::GunStats
-  gunModel: {fileID: 919132149155446097, guid: 37ec58e3a490df847a98d32b40b242d3, type: 3}
+  gunModel: {fileID: 919132149155446097, guid: 1887abe84b82d604fa2394f4f29033b0, type: 3}
   shootDamage: 5
   shootDist: 75
   shootRate: 0.5
-  ammoCur: 30
+  ammoCur: 28
   ammoMax: 30
   hitEffect: {fileID: 6200171497549161825, guid: cb502d4b4cfa97b479cb284dab177d9a, type: 3}
   ShootSound:

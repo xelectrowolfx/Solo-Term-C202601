@@ -3,6 +3,7 @@ using System.Drawing;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Animations.Rigging;
 using Color = UnityEngine.Color;
 
 public class enemyAI : MonoBehaviour, IDamage, IFootstep
@@ -14,15 +15,18 @@ public class enemyAI : MonoBehaviour, IDamage, IFootstep
     [SerializeField] GameObject bullet;
     [SerializeField] Transform headPos;
     [SerializeField] GameObject dropItem;
+    
     [SerializeField] AudioClip gunfire;
     [Range(0f, 1f)][SerializeField] float Gun_Volume = .5f;
-    [SerializeField] AudioClip footSteps;
+    [SerializeField] AudioClip[] footSteps;
     [Range(0f, 1f)][SerializeField] float FootSteps_Volume = .25f;
-    [SerializeField] AudioClip Hurt;
+    [SerializeField] AudioClip[] Hurt;
     [Range(0f, 1f)][SerializeField] float Hurt_Volume = .25f;
-    [SerializeField] AudioClip Dying;
+    [SerializeField] AudioClip[] Dying;
     [Range(0f, 1f)][SerializeField] float Dying_Volume = .25f;
-
+    [SerializeField] AudioClip[] PlayerSpotted;
+    [Range(0f, 1f)][SerializeField] float PlayerSpotted_Volume = .25f;
+    
     [Header("------ Enemy STATS ------")]
     [Range(1, 10)][SerializeField] int HP = 5;
     [Range(0f, 3.0f)][SerializeField] float shootRate = 1f;
@@ -30,6 +34,7 @@ public class enemyAI : MonoBehaviour, IDamage, IFootstep
     [Header("------ AI Dependancies ------")]
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Animation_State_Controller controller;
+    [SerializeField] RigBuilder Ik_Rig;
 
     [Header("------ AI Stats ------")]
     [Range(20,100)][SerializeField] int faceTargetSpeed = 50;
@@ -73,7 +78,7 @@ public class enemyAI : MonoBehaviour, IDamage, IFootstep
     void Start()
     {
         colorOrig = model.material.color;
-        GameManager.instance.updateGameGoal(1);
+        //GameManager.instance.updateGameGoal(1);
         speedOrig = agent.speed;
         startingPos = transform.position;
         stoppingDistOrig = agent.stoppingDistance;
@@ -211,16 +216,17 @@ public class enemyAI : MonoBehaviour, IDamage, IFootstep
                 {
                     Instantiate(dropItem, transform.position, transform.rotation);
                 }
+                Ik_Rig.enabled = false;
                 controller.SetPlayDeath();
                 agent.enabled = false;
-                AudioSource.PlayClipAtPoint(Dying, transform.position, Dying_Volume);
+                AudioSource.PlayClipAtPoint(Dying[Random.Range(0,Dying.Length)], transform.position, Dying_Volume);
                 Alive = false;
                StartCoroutine( DestroyBody());
             }
             else
             {
                 StartCoroutine(flashRed());
-                AudioSource.PlayClipAtPoint(Hurt, transform.position, Hurt_Volume);
+                AudioSource.PlayClipAtPoint(Hurt[Random.Range(0, Hurt.Length)], transform.position, Hurt_Volume);
             }
         }
         
@@ -231,6 +237,7 @@ public class enemyAI : MonoBehaviour, IDamage, IFootstep
         LastKnownLoc = GameManager.instance.player.transform.position;
         agent.SetDestination(LastKnownLoc);
         sprint();
+        //AudioSource.PlayClipAtPoint(PlayerSpotted[Random.Range(0, PlayerSpotted.Length)], transform.position, PlayerSpotted_Volume);
 
     }
     IEnumerator flashRed()
@@ -346,6 +353,6 @@ public class enemyAI : MonoBehaviour, IDamage, IFootstep
 
     public void FootStepEvent(Vector3 Pos)
     {
-        AudioSource.PlayClipAtPoint(footSteps, Pos, FootSteps_Volume);
+        AudioSource.PlayClipAtPoint(footSteps[Random.Range(0, footSteps.Length)], Pos, FootSteps_Volume);
     }
 }
