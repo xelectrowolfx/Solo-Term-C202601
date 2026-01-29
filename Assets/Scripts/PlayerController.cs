@@ -91,6 +91,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
         }
         if (Input.GetButtonDown("Reload") && gunList.Count > 0) {
             gunList[gunListPos].ammoCur = gunList[gunListPos].ammoMax;
+            UpdatePlayerUI();
         }
         
         if (Input.GetButton("Fire1") && gunList.Count > 0 && gunList[gunListPos].ammoCur > 0 && shootTimer >= shootRate)
@@ -131,6 +132,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
     {
         shootTimer = 0;
         gunList[gunListPos].ammoCur--;
+        UpdatePlayerUI();
         aud.PlayOneShot(gunList[gunListPos].ShootSound[Random.Range(0, gunList[gunListPos].ShootSound.Length)], gunList[gunListPos].shootSoundVol);
         if (gunList[gunListPos].Bullet != null)
         {
@@ -213,7 +215,13 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
     {
         GameManager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
         GameManager.instance.playerShieldBar.fillAmount = (float)Shield / ShieldOrig;
-    }
+        if (gunList.Count > 0)
+        {
+            GameManager.instance.AmmoCur.text = gunList[gunListPos].ammoCur.ToString();
+            GameManager.instance.AmmoMax.text = gunList[gunListPos].ammoMax.ToString();
+        }
+
+        }
 
     public void getGunStats(GunStats gun)
     {
@@ -240,6 +248,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
         shootRate = gunList[gunListPos].shootRate;
         gunmodel.GetComponent<MeshFilter>().sharedMesh = gunList[gunListPos].gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunmodel.GetComponent<MeshRenderer>().sharedMaterial = gunList[gunListPos].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+        UpdatePlayerUI();
     }
 
     void selectGun()

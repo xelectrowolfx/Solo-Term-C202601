@@ -24,8 +24,8 @@ public class GameManager : MonoBehaviour
     public GameObject DamageScreenShield;
     public GameObject playerSpawnPos;
     public int BodyCleanUpTime;
-    public GameObject AmmoMax;
-    public GameObject AmmoCur;
+    public TMP_Text AmmoMax;
+    public TMP_Text AmmoCur;
     float timeScaleOrig;
     
     int gameGoalCount;
