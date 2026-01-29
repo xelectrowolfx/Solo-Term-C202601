@@ -53,6 +53,11 @@ public class enemyAI : MonoBehaviour, IDamage, IFootstep
     Vector3 playerdir;
     Vector3 LastKnownLoc;
 
+    //enemy
+    public Vector3 AI_Forwards;
+    public Vector3 AI_Move_Dir;
+    public Vector3 AI_Cur_Speed;
+
 
     //Booleans
     bool Alerted;
@@ -179,8 +184,12 @@ public class enemyAI : MonoBehaviour, IDamage, IFootstep
     }
     void Update()
     {
+
         if (Alive)
         {
+            AI_Forwards = transform.forward;
+            AI_Move_Dir = agent.velocity.normalized;
+            AI_Cur_Speed = agent.velocity;
             AI();
         }
         
