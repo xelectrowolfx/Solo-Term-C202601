@@ -60,7 +60,7 @@ public class enemyAI : MonoBehaviour, IDamage, IFootstep
     public Vector3 AI_Move_Dir;
     public Vector3 AI_Cur_Speed;
 
-    List<GameObject> Allys;
+    List<GameObject> Allys = new List<GameObject>();
    
    
 
@@ -251,7 +251,7 @@ public class enemyAI : MonoBehaviour, IDamage, IFootstep
     }
     private void AlertNearbyGuards()
     {
-        for(int i = 0; i <= Allys.Count; i++)
+        for(int i = 0; i < Allys.Count; i++)
         {
             if(Allys[i] != null && Allys[i].GetComponent<enemyAI>() != null)
             {
@@ -339,6 +339,7 @@ public class enemyAI : MonoBehaviour, IDamage, IFootstep
 
         if (other.CompareTag("Enemy"))
         {
+            Debug.Log("Ally Found");
             Allys.Add(other.gameObject);
         }
 
@@ -353,6 +354,7 @@ public class enemyAI : MonoBehaviour, IDamage, IFootstep
         }
         if (other.CompareTag("Enemy"))
         {
+            
             Allys.Remove(other.gameObject);
         }
     }
