@@ -1,5 +1,7 @@
 using System.Collections;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -58,6 +60,9 @@ public class enemyAI : MonoBehaviour, IDamage, IFootstep
     public Vector3 AI_Move_Dir;
     public Vector3 AI_Cur_Speed;
 
+    List<GameObject> Allys;
+   
+   
 
     //Booleans
     bool Alerted;
@@ -244,13 +249,28 @@ public class enemyAI : MonoBehaviour, IDamage, IFootstep
         }
         
     }
-    private void EnemySpotted()
+    private void AlertNearbyGuards()
     {
-        Alerted = true;
-        LastKnownLoc = GameManager.instance.player.transform.position;
-        agent.SetDestination(LastKnownLoc);
-        sprint();
-        AudioSource.PlayClipAtPoint(PlayerSpotted[Random.Range(0, PlayerSpotted.Length)], transform.position, PlayerSpotted_Volume);
+        for(int i = 0; i <= Allys.Count; i++)
+        {
+            if(Allys[i] != null && Allys[i].GetComponent<enemyAI>() != null)
+            {
+                Allys[i].GetComponent<enemyAI>().EnemySpotted();
+            }
+            
+        }
+    }
+    public void EnemySpotted()
+    {
+        if (!Alerted)
+        {
+            Alerted = true;
+            LastKnownLoc = GameManager.instance.player.transform.position;
+            agent.SetDestination(LastKnownLoc);
+            sprint();
+            AudioSource.PlayClipAtPoint(PlayerSpotted[Random.Range(0, PlayerSpotted.Length)], transform.position, PlayerSpotted_Volume);
+            AlertNearbyGuards();
+        }
 
     }
     IEnumerator flashRed()
@@ -317,6 +337,11 @@ public class enemyAI : MonoBehaviour, IDamage, IFootstep
             playerinTrigger = true;
         }
 
+        if (other.CompareTag("Enemy"))
+        {
+            Allys.Add(other.gameObject);
+        }
+
     }
 
     private void OnTriggerExit(Collider other)
@@ -325,6 +350,10 @@ public class enemyAI : MonoBehaviour, IDamage, IFootstep
         {
             playerinTrigger = false;
             agent.stoppingDistance = 0;
+        }
+        if (other.CompareTag("Enemy"))
+        {
+            Allys.Remove(other.gameObject);
         }
     }
     private void AI()
