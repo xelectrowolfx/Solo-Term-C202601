@@ -303,7 +303,7 @@ MonoBehaviour:
   HP: 10
   Shield: 5
   speed: 5
-  sprintMod: 3
+  sprintMod: 2
   jumpSpeed: 12
   jumpMax: 2
   gravity: 35
