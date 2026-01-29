@@ -187,9 +187,7 @@ public class enemyAI : MonoBehaviour, IDamage, IFootstep
 
         if (Alive)
         {
-            AI_Forwards = transform.forward;
-            AI_Move_Dir = agent.velocity.normalized;
-            AI_Cur_Speed = agent.velocity;
+          
             AI();
         }
         
@@ -319,10 +317,12 @@ public class enemyAI : MonoBehaviour, IDamage, IFootstep
     {
    
         playerdir = GameManager.instance.player.transform.position - transform.position;
-
-     
-
+        AI_Forwards = transform.forward;
+        AI_Move_Dir = agent.velocity.normalized;
+        AI_Cur_Speed = agent.velocity;
         shootTimer += Time.deltaTime;
+
+
 
         if (agent.remainingDistance < 0.1f + Random.value)
         {

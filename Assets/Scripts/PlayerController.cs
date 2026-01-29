@@ -126,30 +126,38 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
         }
     }
 
+
     void shoot()
     {
         shootTimer = 0;
         gunList[gunListPos].ammoCur--;
-
-        RaycastHit Hit;
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out Hit, shootDist, ~ignoreLayer))
+        aud.PlayOneShot(gunList[gunListPos].ShootSound[Random.Range(0, gunList[gunListPos].ShootSound.Length)], gunList[gunListPos].shootSoundVol);
+        if (gunList[gunListPos].Bullet != null)
         {
-            Debug.Log(Hit.collider.name);
-
-            Instantiate(gunList[gunListPos].hitEffect, Hit.point, Quaternion.identity);
-            aud.PlayOneShot(gunList[gunListPos].ShootSound[Random.Range(0, gunList[gunListPos].ShootSound.Length)], gunList[gunListPos].shootSoundVol);
-
-
-            IDamage dmg = Hit.collider.GetComponent<IDamage>();
-            if (dmg != null)
-            {
-                dmg.takeDamage(shootDamage);
-            }
-
+            Transform Shoot_Pos = gunList[gunListPos].gunModel.transform.Find("Shoot_Pos");
+            Debug.Log(Shoot_Pos);
+           Instantiate(gunList[gunListPos].Bullet, Shoot_Pos.position, Quaternion.LookRotation(Camera.main.transform.forward));
         }
-        
-   
+        else
+        {
+            RaycastHit Hit;
+            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out Hit, shootDist, ~ignoreLayer))
+            {
+                Debug.Log(Hit.collider.name);
 
+                Instantiate(gunList[gunListPos].hitEffect, Hit.point, Quaternion.identity);
+                
+
+
+                IDamage dmg = Hit.collider.GetComponent<IDamage>();
+                if (dmg != null)
+                {
+                    dmg.takeDamage(shootDamage);
+                }
+
+            }
+        }
+     
     }
 
     public void takeDamage(int amount)
