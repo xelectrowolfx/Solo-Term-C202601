@@ -213,8 +213,14 @@ public class enemyAI : MonoBehaviour, IDamage, IFootstep
         if (Alive)
         {
             HP -= amount;
-            EnemySpotted();
-
+            if (!Alerted)
+            {
+                EnemySpotted();
+            }
+            else
+            {
+                LastKnownLoc = GameManager.instance.player.transform.position;
+            }
 
             if (HP <= 0)
             {
@@ -272,8 +278,16 @@ public class enemyAI : MonoBehaviour, IDamage, IFootstep
             if (angleToPlayer <= FOV && hit.collider.CompareTag("Player"))
             {
                 agent.SetDestination(GameManager.instance.player.transform.position);
-                EnemySpotted();
-                
+                if (!Alerted)
+                {
+                    EnemySpotted();
+                }
+                else
+                {
+                    LastKnownLoc = GameManager.instance.player.transform.position;
+                }
+
+
 
                 if (agent.remainingDistance <= agent.stoppingDistance)
                 {

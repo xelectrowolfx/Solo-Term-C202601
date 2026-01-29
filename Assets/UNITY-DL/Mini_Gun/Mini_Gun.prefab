@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 207028433197213405}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Shoot_Pos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,6 +82,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c5a13c267a6a4d3489d8fd833b706be9, type: 3}
       propertyPath: m_Name
       value: Mini_Gun
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c5a13c267a6a4d3489d8fd833b706be9, type: 3}
+      propertyPath: m_Layer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

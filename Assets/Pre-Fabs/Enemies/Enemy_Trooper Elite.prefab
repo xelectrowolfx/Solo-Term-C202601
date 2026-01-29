@@ -522,7 +522,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b5ca5781906e708438a37609a8162a36, type: 3}
   - {fileID: 8300000, guid: 911a7f5f59b53a349b07da1a2ce4ebeb, type: 3}
   Dying_Volume: 0.48
-  PlayerSpotted: []
+  PlayerSpotted:
+  - {fileID: 8300000, guid: 38baed23f57db0e43b134d1458be45de, type: 3}
   PlayerSpotted_Volume: 0.25
   HP: 10
   shootRate: 0.5
