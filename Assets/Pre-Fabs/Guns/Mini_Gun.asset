@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62ea4ef0fbbc4b428ff442c0f0b7620, type: 3}
+  m_Name: Mini_Gun
+  m_EditorClassIdentifier: Assembly-CSharp::GunStats
+  gunModel: {fileID: 910877983822878629, guid: 655dd856fbc1dd6408ae3bfe8b00cf2d, type: 3}
+  shootDamage: 1
+  shootDist: 251
+  shootRate: 0.1
+  Bullet: {fileID: 0}
+  ammoCur: 48
+  ammoMax: 50
+  hitEffect: {fileID: 6200171497549161825, guid: 844f6b6aae47eba42b8b6d979d504391, type: 3}
+  ShootSound:
+  - {fileID: 8300000, guid: 04ccc0ebb8fa28c4786bda6afb382dd6, type: 3}
+  shootSoundVol: 0.533

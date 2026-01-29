@@ -145,8 +145,8 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
             RaycastHit Hit;
             if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out Hit, shootDist, ~ignoreLayer))
             {
-                //Debug.Log(Hit.collider.name);
-                
+                Debug.Log(Hit.collider.name);
+
                 Instantiate(gunList[gunListPos].hitEffect, Hit.point, Quaternion.identity);
                 
 

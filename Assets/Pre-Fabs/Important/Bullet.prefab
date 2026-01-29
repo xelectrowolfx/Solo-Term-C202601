@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::damage
   type: 0
   rb: {fileID: 2241872878929357835}
-  hitEffect: {fileID: 0}
+  hitEffect: {fileID: 3903741965174757167, guid: 844f6b6aae47eba42b8b6d979d504391, type: 3}
   damageAmount: 1
   damageRate: 0
   speed: 25

@@ -38,7 +38,7 @@ public class damage : MonoBehaviour
         {
             return;
         }
-
+        Debug.Log(other);
         IDamage dmg = other.GetComponent<IDamage>();
 
         if (dmg != null && type != damageType.DOT)
