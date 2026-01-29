@@ -50,16 +50,22 @@ public class Spawner : MonoBehaviour
 
     void spawn()
     {
-        spawnTimer = 0;
-
-        spawnCount++;
+        
 
         Vector3 ranPos = Random.insideUnitSphere * spawnDist;
         ranPos += transform.position;
 
         NavMeshHit hit;
-        NavMesh.SamplePosition(ranPos, out hit, spawnDist, 1);
-        Instantiate(objectToSpawn, hit.position, Quaternion.Euler(0f, Random.Range(0f, 360f), 0f));
+       
+        if (NavMesh.SamplePosition(ranPos, out hit, spawnDist, 1))
+        {
+            spawnTimer = 0;
+
+            spawnCount++;
+
+            Instantiate(objectToSpawn, hit.position, Quaternion.Euler(0f, Random.Range(0f, 360f), 0f));
+        }
+        
 
     }
 }

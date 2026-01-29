@@ -244,7 +244,7 @@ public class enemyAI : MonoBehaviour, IDamage, IFootstep
         LastKnownLoc = GameManager.instance.player.transform.position;
         agent.SetDestination(LastKnownLoc);
         sprint();
-        //AudioSource.PlayClipAtPoint(PlayerSpotted[Random.Range(0, PlayerSpotted.Length)], transform.position, PlayerSpotted_Volume);
+        AudioSource.PlayClipAtPoint(PlayerSpotted[Random.Range(0, PlayerSpotted.Length)], transform.position, PlayerSpotted_Volume);
 
     }
     IEnumerator flashRed()

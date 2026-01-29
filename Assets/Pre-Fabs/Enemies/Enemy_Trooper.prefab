@@ -430,7 +430,7 @@ PrefabInstance:
       addedObject: {fileID: 8269078610781126606}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: abeb185fcf53fd34b978a9e37ad7af46, type: 3}
-      insertIndex: -1
+      insertIndex: 1
       addedObject: {fileID: 9099013919764240601}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: abeb185fcf53fd34b978a9e37ad7af46, type: 3}
       insertIndex: -1
@@ -522,8 +522,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b5ca5781906e708438a37609a8162a36, type: 3}
   - {fileID: 8300000, guid: 911a7f5f59b53a349b07da1a2ce4ebeb, type: 3}
   Dying_Volume: 0.48
-  PlayerSpotted: []
-  PlayerSpotted_Volume: 0.25
+  PlayerSpotted:
+  - {fileID: 8300000, guid: a9aff42f828f7054296add4ddd67f7de, type: 3}
+  - {fileID: 8300000, guid: 38baed23f57db0e43b134d1458be45de, type: 3}
+  - {fileID: 8300000, guid: 4a724a67350667d45941b36e785981ab, type: 3}
+  PlayerSpotted_Volume: 0.4
   HP: 5
   shootRate: 0.75
   agent: {fileID: 3100227130032790159}
@@ -540,6 +543,9 @@ MonoBehaviour:
     m_Bits: 1024
   RoamDist: 15
   RoamPauseTime: 3
+  AI_Forwards: {x: 0, y: 0, z: 0}
+  AI_Move_Dir: {x: 0, y: 0, z: 0}
+  AI_Cur_Speed: {x: 0, y: 0, z: 0}
 --- !u!135 &4980297938609257987
 SphereCollider:
   m_ObjectHideFlags: 0
