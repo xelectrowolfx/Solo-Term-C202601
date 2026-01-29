@@ -539,7 +539,7 @@ MonoBehaviour:
   IgnoreLayer:
     serializedVersion: 2
     m_Bits: 1024
-  RoamDist: 4
+  RoamDist: 10
   RoamPauseTime: 2
   AI_Forwards: {x: 0, y: 0, z: 0}
   AI_Move_Dir: {x: 0, y: 0, z: 0}

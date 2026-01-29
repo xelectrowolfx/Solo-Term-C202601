@@ -293,7 +293,7 @@ MonoBehaviour:
   controller: {fileID: 120043031118959846}
   aud: {fileID: 1884665554942653692}
   rig: {fileID: 4400723046114637292}
-  anim: {fileID: 0}
+  anim: {fileID: 2803263988811783176}
   footSteps: []
   FootSteps_Volume: 0.25
   Hurt: []

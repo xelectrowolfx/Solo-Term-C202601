@@ -530,7 +530,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a9aff42f828f7054296add4ddd67f7de, type: 3}
   - {fileID: 8300000, guid: 4a724a67350667d45941b36e785981ab, type: 3}
   PlayerSpotted_Volume: 0.4
-  HP: 5
+  HP: 3
   shootRate: 0.75
   agent: {fileID: 3100227130032790159}
   controller: {fileID: 8073712892299992572}
